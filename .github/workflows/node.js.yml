@@ -38,4 +38,5 @@ jobs:
       with:
         # Artifact name
         name: dist
+        path: ./dist
 
