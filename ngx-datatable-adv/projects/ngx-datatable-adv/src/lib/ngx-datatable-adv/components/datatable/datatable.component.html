@@ -1,0 +1,19 @@
+<div class="adv-datatable__wrapper">
+  <div class="adv-datatable__row adv-datatable__row--header">
+    <div *ngFor="let column of visibleColumns"
+         class="adv-datatable__item"
+         [class.adv-datatable__item--sortable]="column.isSortable"
+         [class.adv-datatable__item--sortable--active-sort]="column.key === sortSubject?.subject"
+         [class.adv-datatable__item--sortable--active-sort--desc]="column.key === sortSubject?.subject && sortSubject?.desc"
+         (click)="headerClick(column)">
+      {{column.name}}
+    </div>
+  </div>
+  <div *ngFor="let row of data" class="adv-datatable__row adv-datatable__row--body">
+    <div *ngFor="let column of visibleColumns" [title]="column.tooltip(row)" [ngSwitch]="column.type">
+      <ng-container *ngSwitchCase="eColumnType.DATETIME">{{column.value(row) | date: column.formatString }}</ng-container>
+      <ng-container *ngSwitchCase="eColumnType.NUMBER">{{column.value(row) | number: column.formatString}}</ng-container>
+      <ng-container *ngSwitchDefault>{{column.value(row)}}</ng-container>
+    </div>
+  </div>
+</div>

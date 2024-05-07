@@ -1,0 +1,44 @@
+.adv-datatable {
+
+  &__wrapper {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    * {
+      box-sizing: border-box;
+    }
+  }
+
+  &__row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+    &--header {
+      border-bottom: 1px solid grey;
+
+      .adv-datatable__item {
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 5px;
+
+        &--sortable {
+
+          &--active-sort:after{
+            content: 'ASC'
+          }
+          &--active-sort--desc:after{
+            content: 'DESC'
+          }
+
+          &:hover {
+            background-color: lightgrey;
+            user-select: none;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
